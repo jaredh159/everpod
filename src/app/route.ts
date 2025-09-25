@@ -39,7 +39,15 @@ function generateEpisodes(): Episode[] {
       })}`,
       description: `Daily podcast episode from ${episodeDate.toLocaleDateString()}`,
       pubDate: episodeDate.toUTCString(),
-      guid: `episode-${episodeDate.getTime()}`,
+      guid: `${episodeDate.toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit'
+      })}-${episodeDate.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(' ', '-')}`,
       url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3',
       duration: '00:02:30'
     };
