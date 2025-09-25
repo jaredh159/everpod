@@ -69,7 +69,7 @@ function generateRSSFeed(episodes: Episode[]) {
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>EverPod - Daily Updates</title>
-    <link>https://localhost:3000</link>
+    <link>https://everpod.vercel.app</link>
     <description>A podcast that updates every minute with fresh content</description>
     <language>en-us</language>
     <lastBuildDate>${now.toUTCString()}</lastBuildDate>
