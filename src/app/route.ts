@@ -27,13 +27,13 @@ function generateEpisodes(): Episode[] {
   const startTime = new Date(now.getTime() - (100 * 60 * 1000)); // 100 minutes ago
 
   for (let i = 0; i < 100; i++) {
-    const episodeDate = new Date(startTime.getTime() + (i * 60 * 1000));
+    const episodeDate = new Date(startTime.getTime() + (i * 60 * 1000) - (4 * 60 * 60 * 1000)); // Subtract 4 hours
     const episode = {
-      title: `Daily Update - ${episodeDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })} ${episodeDate.toLocaleTimeString('en-US', {
+      title: `${episodeDate.toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit'
+      })} - ${episodeDate.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit'
       })}`,
@@ -68,8 +68,6 @@ function generateRSSFeed(episodes: Episode[]) {
     <itunes:explicit>false</itunes:explicit>
     <image>
       <url>https://placehold.co/1200x1200/000/ff0000?text=Everpod</url>
-      <title>EverPod</title>
-      <link>https://localhost:3000</link>
     </image>
     ${episodes.map(episode => `
     <item>

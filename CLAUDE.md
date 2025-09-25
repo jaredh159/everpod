@@ -4,7 +4,7 @@
 This is a Next.js application that serves a podcast RSS feed that generates fake episodes with date-based titles, updating every minute.
 
 ## Key Features
-- **API Endpoint**: `/api/feed` - serves a valid podcast RSS feed
+- **API Endpoint**: `/` (root) - serves a valid podcast RSS feed
 - **Episode Generation**: Creates 100 episodes with timestamps going back 100 minutes from current time
 - **Date-based Titles**: Episode titles include date and time (e.g., "Daily Update - September 25, 2025 01:55 PM")
 - **Auto-updating**: Feed regenerates fresh episodes on each request based on current time
@@ -13,7 +13,7 @@ This is a Next.js application that serves a podcast RSS feed that generates fake
 
 ## File Structure
 ```
-src/app/api/feed/route.ts - Main API endpoint that generates the RSS feed
+src/app/route.ts - Main API endpoint that generates the RSS feed (served at root /)
 ```
 
 ## How It Works
@@ -29,7 +29,7 @@ src/app/api/feed/route.ts - Main API endpoint that generates the RSS feed
 - `npm run start` - Start production server
 
 ## Testing
-- Visit `http://localhost:3000/api/feed` to see the RSS feed
+- Visit `http://localhost:3000/` to see the RSS feed
 - Episodes update automatically based on current time
 - Feed validates as proper RSS 2.0 with iTunes extensions
 
