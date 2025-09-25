@@ -28,6 +28,7 @@ function generateEpisodes(): Episode[] {
 
   for (let i = 0; i < 100; i++) {
     const episodeDate = new Date(startTime.getTime() + (i * 60 * 1000) - (4 * 60 * 60 * 1000)); // Subtract 4 hours
+    episodeDate.setSeconds(0, 0); // Set seconds and milliseconds to 0
     const episode = {
       title: `${episodeDate.toLocaleDateString('en-US', {
         month: '2-digit',
