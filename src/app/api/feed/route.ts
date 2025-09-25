@@ -1,6 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+interface Episode {
+  title: string;
+  description: string;
+  pubDate: string;
+  guid: string;
+  url: string;
+  duration: string;
+}
+
+export async function GET() {
   const episodes = generateEpisodes();
   const feed = generateRSSFeed(episodes);
 
@@ -12,8 +21,8 @@ export async function GET(request: NextRequest) {
   });
 }
 
-function generateEpisodes() {
-  const episodes = [];
+function generateEpisodes(): Episode[] {
+  const episodes: Episode[] = [];
   const now = new Date();
   const startTime = new Date(now.getTime() - (100 * 60 * 1000)); // 100 minutes ago
 
@@ -40,7 +49,7 @@ function generateEpisodes() {
   return episodes.reverse(); // Most recent first
 }
 
-function generateRSSFeed(episodes: any[]) {
+function generateRSSFeed(episodes: Episode[]) {
   const now = new Date();
 
   return `<?xml version="1.0" encoding="UTF-8"?>
