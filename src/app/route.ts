@@ -24,33 +24,37 @@ export async function GET() {
 function generateEpisodes(): Episode[] {
   const episodes: Episode[] = [];
   const now = new Date();
-  const startTime = new Date(now.getTime() - (100 * 60 * 1000)); // 100 minutes ago
+  const startTime = new Date(now.getTime() - 100 * 60 * 1000); // 100 minutes ago
 
   for (let i = 0; i < 100; i++) {
-    const episodeDate = new Date(startTime.getTime() + (i * 60 * 1000) - (4 * 60 * 60 * 1000)); // Subtract 4 hours
+    const episodeDate = new Date(
+      startTime.getTime() + i * 60 * 1000 - 4 * 60 * 60 * 1000,
+    ); // Subtract 4 hours
     episodeDate.setSeconds(0, 0); // Set seconds and milliseconds to 0
     const episode = {
       title: `${episodeDate.toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
-        year: '2-digit'
+        year: '2-digit',
       })} - ${episodeDate.toLocaleTimeString('en-US', {
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
       })}`,
-      description: `Daily podcast episode from ${episodeDate.toLocaleDateString()}`,
+      description: `Daily podcast episode from ${episodeDate.toLocaleDateString()} lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
       pubDate: episodeDate.toUTCString(),
       guid: `${episodeDate.toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
-        year: '2-digit'
-      })}-${episodeDate.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-      }).replace(' ', '-')}`,
+        year: '2-digit',
+      })}-${episodeDate
+        .toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        })
+        .replace(' ', '-')}`,
       url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3',
-      duration: '00:02:30'
+      duration: '00:02:30',
     };
     episodes.push(episode);
   }
@@ -78,7 +82,9 @@ function generateRSSFeed(episodes: Episode[]) {
     <image>
       <url>https://placehold.co/1200x1200/000/ff0000?text=Everpod</url>
     </image>
-    ${episodes.map(episode => `
+    ${episodes
+      .map(
+        (episode) => `
     <item>
       <title><![CDATA[${episode.title}]]></title>
       <description><![CDATA[${episode.description}]]></description>
@@ -87,7 +93,10 @@ function generateRSSFeed(episodes: Episode[]) {
       <enclosure url="${episode.url}" type="audio/mpeg" length="1000000"/>
       <itunes:duration>${episode.duration}</itunes:duration>
       <itunes:explicit>false</itunes:explicit>
-    </item>`).join('')}
+    </item>`,
+      )
+      .join('')}
   </channel>
 </rss>`;
 }
+
