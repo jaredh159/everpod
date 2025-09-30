@@ -53,8 +53,8 @@ function generateEpisodes(): Episode[] {
           hour12: true,
         })
         .replace(' ', '-')}`,
-      url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3',
-      duration: '00:02:30',
+      url: 'https://gertrude-dev.nyc3.digitaloceanspaces.com/everpod.mp3',
+      duration: '00:02:38',
     };
     episodes.push(episode);
   }
